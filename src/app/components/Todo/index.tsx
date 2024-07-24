@@ -29,9 +29,9 @@ const TodoList: React.FC = () => {
     setTodos(newTodos);
   };
 
-  const toggleTodo = (index: number) => {
+  const toggleTodo = (index: string) => {
     const newTodos = todos.map((todo, i) =>
-      i === index ? { ...todo, completed: !todo.completed } : todo
+      index === todo.text ? { ...todo, completed: !todo.completed } : todo
     );
     setTodos(newTodos);
   };
@@ -48,13 +48,13 @@ const TodoList: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-[31px] font-bold absolute left-[280px] mb-4 ">
+      <h1 className="text-[20px] font-bold absolute left-[170px] mb-4 ">
         All Tasks
       </h1>
       <div className="flex mb-4 justify-around">
         <button
           onClick={() => setFilter("All")}
-          className={`p-2 text-[22px] absolute left-[54px] top-[150px] ${
+          className={`p-2 text-[13px] absolute left-[30px] top-[110px] ${
             filter === "All" ? "text-[#EA5959] font-bold" : ""
           }`}
         >
@@ -62,7 +62,7 @@ const TodoList: React.FC = () => {
         </button>
         <button
           onClick={() => setFilter("Active")}
-          className={`p-2 text-[22px] absolute left-[54px] top-[200px] ${
+          className={`p-2 text-[13px] absolute left-[30px] top-[145px] ${
             filter === "Active" ? "text-[#EA5959] font-bold" : ""
           }`}
         >
@@ -70,7 +70,7 @@ const TodoList: React.FC = () => {
         </button>
         <button
           onClick={() => setFilter("Completed")}
-          className={`p-2 text-[22px] absolute left-[54px] top-[250px] ${
+          className={`p-2 text-[13px] absolute left-[30px] top-[180px] ${
             filter === "Completed" ? "text-[#EA5959] font-bold" : ""
           }`}
         >
@@ -78,7 +78,7 @@ const TodoList: React.FC = () => {
         </button>
       </div>
 
-      <div className="absolute left-[280px] top-[95px] mb-4">
+      <div className="absolute left-[170px] top-[75px] mb-4 text-[10px]   ">
         <input
           type="text"
           value={input}
@@ -86,22 +86,22 @@ const TodoList: React.FC = () => {
             setInput(e.target.value)
           }
           onKeyPress={handleKeyPress}
-          className="rounded-lg p-3 flex-grow mr-1 w-[630px] bg-[#F3F3F3]"
+          className="rounded-lg p-1 flex-grow mr-1 w-[350px] bg-[#F3F3F3] px-2"
           placeholder="Add a new task inside 'All' category"
         />
       </div>
 
-      <ul className="absolute left-[270px] top-[170px]">
+      <ul className="absolute left-[175px] top-[130px]">
         {getFilteredTodos().map((todo, index) => (
           <li
             key={index}
-            className="flex text-[18px] text-[#5A5A5A80] p-2 mb-2 bg-white"
+            className="flex text-[14px] text-[#5A5A5A80]  mb-2 bg-white"
           >
             <input
               type="checkbox"
               checked={todo.completed}
-              onChange={() => toggleTodo(index)}
-              className="mr-2 w-[28px] bg-[#5A5A5A] "
+              onChange={() => toggleTodo(todo.text)}
+              className="mr-2 w-[15px] bg-[#5A5A5A] "
             />
             <span
               className={`flex-grow ${
@@ -112,7 +112,7 @@ const TodoList: React.FC = () => {
             </span>
             <button
               onClick={() => deleteTodo(index)}
-              className="text-[#EA5959] absolute left-[610px]"
+              className="text-[#EA5959] absolute left-[335px]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,7 @@ const TodoList: React.FC = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-5 "
+                className="size-4 "
               >
                 <path
                   strokeLinecap="round"
